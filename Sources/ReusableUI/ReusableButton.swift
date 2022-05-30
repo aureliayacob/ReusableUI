@@ -8,6 +8,8 @@
 import SwiftUI
 
 @available(macOS 12.0, *)
+@available(iOS 15.0, *)
+
 public struct ReusableButton: View {
     public var text: String
     public var action: () -> Void
@@ -32,6 +34,7 @@ public struct ReusableButton: View {
     }
 }
 
+@available(iOS 15.0, *)
 @available(macOS 12.0, *)
 struct ReusableButton_Previews: PreviewProvider {
     static var previews: some View {
@@ -39,6 +42,7 @@ struct ReusableButton_Previews: PreviewProvider {
     }
 }
 
+@available(iOS 15.0, *)
 @available(macOS 12.0, *)
 struct ReusableButtonLibraryContent: LibraryContentProvider {
     @LibraryContentBuilder var views: [LibraryItem] {
