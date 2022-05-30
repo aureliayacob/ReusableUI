@@ -8,10 +8,10 @@
 import SwiftUI
 
 @available(macOS 12.0, *)
-struct ReusableButton: View {
-    var text: String
-    var action: () -> Void
-    var body: some View {
+public struct ReusableButton: View {
+    public var text: String
+    public var action: () -> Void
+    public var body: some View {
         Button {
             action()
         } label: {
@@ -24,6 +24,11 @@ struct ReusableButton: View {
         .cornerRadius(15)
         .padding()
 
+    }
+    
+    public init(text: String, action: @escaping () -> Void){
+        self.text = text
+        self.action = action
     }
 }
 
