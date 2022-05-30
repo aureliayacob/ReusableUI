@@ -7,24 +7,40 @@
 
 import SwiftUI
 
-@available(macOS 12.0, *)
-@available(iOS 15.0, *)
+//@available(macOS 12.0, *)
+//@available(iOS 15.0, *)
 
+@available(macOS 10.15, *)
 public struct ReusableButton: View {
     public var text: String
     public var action: () -> Void
     public var body: some View {
-        Button {
-            action()
-        } label: {
-            Text("\(text)".uppercased())
-                .foregroundColor(.white)
+        if #available(macOS 12.0, *) {
+            Button {
+                action()
+            } label: {
+                Text("\(text)".uppercased())
+                    .foregroundColor(.white)
+            }
+            .frame(height: 55)
+            .frame(maxWidth: .infinity)
+            .background(.indigo)
+            .cornerRadius(15)
+            .padding()
+        } else {
+            // Fallback on earlier versions
+            Button {
+                action()
+            } label: {
+                Text("\(text)".uppercased())
+                    .foregroundColor(.white)
+            }
+            .frame(height: 55)
+            .frame(maxWidth: .infinity)
+            .background(Color.accentColor)
+            .cornerRadius(15)
+            .padding()
         }
-        .frame(height: 55)
-        .frame(maxWidth: .infinity)
-        .background(.pink)
-        .cornerRadius(15)
-        .padding()
 
     }
     
@@ -34,7 +50,7 @@ public struct ReusableButton: View {
     }
 }
 
-@available(iOS 15.0, *)
+
 @available(macOS 12.0, *)
 struct ReusableButton_Previews: PreviewProvider {
     static var previews: some View {
@@ -42,7 +58,6 @@ struct ReusableButton_Previews: PreviewProvider {
     }
 }
 
-@available(iOS 15.0, *)
 @available(macOS 12.0, *)
 struct ReusableButtonLibraryContent: LibraryContentProvider {
     @LibraryContentBuilder var views: [LibraryItem] {
