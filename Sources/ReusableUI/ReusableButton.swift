@@ -22,7 +22,7 @@ public struct ReusableButton: View {
         }
         .frame(height: 55)
         .frame(maxWidth: .infinity)
-        .background(.indigo)
+        .background(.pink)
         .cornerRadius(15)
         .padding()
 
@@ -50,5 +50,7 @@ struct ReusableButtonLibraryContent: LibraryContentProvider {
         LibraryItem(ReusableButton(text: "next", action: {}),
                     title: "NexBtnKu",
                     category: .control)
+        
+       
     }
 }
