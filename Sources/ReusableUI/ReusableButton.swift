@@ -8,7 +8,7 @@
 import SwiftUI
 
 //@available(macOS 12.0, *)
-//@available(iOS 15.0, *)
+@available(iOS 15.0, *)
 
 @available(macOS 10.15, *)
 public struct ReusableButton: View {
