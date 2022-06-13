@@ -14,7 +14,7 @@ public struct ButtonComponent: View {
     let label: String
     let size: ButtonSize
     let theme: ButtonTheme
-    public let color: Color?
+    let color: Color?
     let icon: Image?
     
     let action: () -> Void
@@ -92,7 +92,7 @@ public struct ButtonComponent: View {
         }
     }
     
-    public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color? = Color.theme.defaultColor, icon: Image?, action: @escaping () -> Void) {
+    public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color?, icon: Image?, action: @escaping () -> Void) {
         self.label = label
         self.size = size
         self.theme = theme
@@ -107,10 +107,9 @@ public struct ButtonComponent: View {
 @available(macOS 11, *)
 struct ButtonComponent_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonComponent(label: "Button", size: .L, theme: .PRIMARY, color: .accentColor, icon: nil, action: {})
+        ButtonComponent(label: "aaaaa", size: .L, theme: .PRIMARY, color: Color.theme.defaultColor, icon: nil, action: {})
             .previewLayout(.sizeThatFits)
             .padding()
-            .disabled(true)
     }
 }
 
