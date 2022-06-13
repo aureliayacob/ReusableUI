@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by nexsoft nexsoft on 13/06/22.
 //
@@ -9,8 +9,9 @@
 import SwiftUI
 
 
+@available(iOS 13.0, *)
 @available(macOS 11, *)
-struct ButtonComponent: View {
+public struct ButtonComponent: View {
     
     let label: String
     let size: ButtonSize
@@ -23,7 +24,7 @@ struct ButtonComponent: View {
     
     @Environment(\.isEnabled) var isEnabled
     
-    var body: some View {
+    public var body: some View {
         
         let sizeAttributes = getSizeAttributes(by: size)
         let themeProperties = getThemeProperties(by: theme)
@@ -93,6 +94,7 @@ struct ButtonComponent: View {
 }
 
 
+@available(iOS 13.0.0, *)
 @available(macOS 11, *)
 struct ButtonComponent_Previews: PreviewProvider {
     static var previews: some View {
@@ -120,6 +122,7 @@ enum ButtonSize {
 }
 
 // Add to library
+@available(iOS 14.0, *)
 @available(macOS 11.0, *)
 struct ReusableLibraryContent: LibraryContentProvider {
     @LibraryContentBuilder var views: [LibraryItem] {
