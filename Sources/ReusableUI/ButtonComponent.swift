@@ -14,7 +14,7 @@ public struct ButtonComponent: View {
     let label: String
     let size: ButtonSize
     let theme: ButtonTheme
-    let color: Color?
+    public let color: Color?
     let icon: Image?
     
     let action: () -> Void
@@ -92,7 +92,7 @@ public struct ButtonComponent: View {
         }
     }
     
-    init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color? = Color.theme.defaultColor, icon: Image?, action: @escaping () -> Void) {
+    public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color? = Color.theme.defaultColor, icon: Image?, action: @escaping () -> Void) {
         self.label = label
         self.size = size
         self.theme = theme
@@ -115,13 +115,13 @@ struct ButtonComponent_Previews: PreviewProvider {
 }
 
 
-enum ButtonTheme {
+public enum ButtonTheme {
     case PRIMARY
     case SECONDARY
     case TERTIARY
 }
 
-enum ButtonSize {
+public enum ButtonSize {
     case XXL
     case XL
     case L

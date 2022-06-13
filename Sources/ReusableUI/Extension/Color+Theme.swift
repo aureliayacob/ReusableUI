@@ -11,15 +11,15 @@ import Foundation
 import SwiftUI
 
 @available(macOS 10.15, *)
-extension Color {
-    static let theme = ColorTheme()
+public extension Color {
+    public static let theme = ColorTheme()
 }
 
 @available(macOS 10.15, *)
-struct ColorTheme {
+public struct ColorTheme {
     
     // Main
-    let defaultColor = Color("DefaultColor")
+    public let defaultColor = Color("DefaultColor")
     
     // Button disabled state
     let buttonFillDisabledState = Color("ButtonDisabled.Fill")
