@@ -13,14 +13,14 @@ import SwiftUI
 @available(macOS 11, *)
 public struct ButtonComponent: View {
     
-    let label: String
-    let size: ButtonSize
-    let theme: ButtonTheme
-    let color: Color?
-    let icon: Image?
+    public let label: String
+    public let size: ButtonSize
+    public let theme: ButtonTheme
+    public let color: Color?
+    public let icon: Image?
 
     
-    let action: () -> Void
+    public let action: () -> Void
     
     @Environment(\.isEnabled) var isEnabled
     
@@ -57,7 +57,7 @@ public struct ButtonComponent: View {
         
     }
     
-    func getSizeAttributes(by size: ButtonSize) ->
+    public func getSizeAttributes(by size: ButtonSize) ->
     (width: CGFloat, height: CGFloat, alignment: Alignment, fontSize: CGFloat, radius: CGFloat, strokeWidth: CGFloat){
         switch size {
             // we can use the font size for the icon size because they are same
@@ -77,7 +77,7 @@ public struct ButtonComponent: View {
     }
     
     // TODO -- refactor because we find out that icon can be dynamic by passing svg icon, and the color states are changeable
-    func getThemeProperties(by theme: ButtonTheme) ->
+    public func getThemeProperties(by theme: ButtonTheme) ->
     (fill: Color, pressedColor: Color, foreground: Color, stroke: Color, icon: String, disabledFill: Color, disabledStroke: Color) {
         
         let mainColor = color ?? Color.accentColor
@@ -106,13 +106,13 @@ struct ButtonComponent_Previews: PreviewProvider {
 }
 
 
-enum ButtonTheme {
+public enum ButtonTheme {
     case PRIMARY
     case SECONDARY
     case TERTIARY
 }
 
-enum ButtonSize {
+public enum ButtonSize {
     case XXL
     case XL
     case L
