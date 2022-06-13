@@ -12,6 +12,8 @@ import SwiftUI
 
 @available(macOS 10.15, *)
 public struct ReusableButton: View {
+   
+    
     public var text: String
     public var action: () -> Void
     public var body: some View {
@@ -24,7 +26,7 @@ public struct ReusableButton: View {
             }
             .frame(height: 55)
             .frame(maxWidth: .infinity)
-            .background(.indigo)
+            .background(Color("DefaultColor"))
             .cornerRadius(15)
             .padding()
         } else {
@@ -37,7 +39,7 @@ public struct ReusableButton: View {
             }
             .frame(height: 55)
             .frame(maxWidth: .infinity)
-            .background(Color.accentColor)
+            .background(Color("DefaultColor"))
             .cornerRadius(15)
             .padding()
         }
@@ -69,3 +71,4 @@ struct ReusableButtonLibraryContent: LibraryContentProvider {
        
     }
 }
+
