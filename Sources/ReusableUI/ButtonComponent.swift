@@ -1,26 +1,23 @@
 //
-//  SwiftUIView.swift
+//  ButtonComponent.swift
+//  iOSComponents
 //
+//  Created by nexsoft nexsoft on 08/06/22.
 //
-//  Created by nexsoft nexsoft on 13/06/22.
-//
-
 import Foundation
 import SwiftUI
 
-
 @available(iOS 13.0, *)
-@available(macOS 11, *)
+@available(macOS 10.15, *)
 public struct ButtonComponent: View {
     
-    public let label: String
-    public let size: ButtonSize
-    public let theme: ButtonTheme
-    public let color: Color?
-    public let icon: Image?
-
+    let label: String
+    let size: ButtonSize
+    let theme: ButtonTheme
+    let color: Color?
+    let icon: Image?
     
-    public let action: () -> Void
+    let action: () -> Void
     
     @Environment(\.isEnabled) var isEnabled
     
@@ -30,7 +27,8 @@ public struct ButtonComponent: View {
         let themeProperties = getThemeProperties(by: theme)
         
         let background = RoundedRectangle(cornerRadius: sizeAttributes.radius)
-            .stroke(isEnabled ? themeProperties.stroke : themeProperties.disabledStroke, lineWidth: sizeAttributes.strokeWidth)
+            .stroke(isEnabled ? themeProperties.stroke : themeProperties.disabledStroke,
+                    lineWidth: sizeAttributes.strokeWidth)
             .background(isEnabled ? themeProperties.fill : themeProperties.disabledFill)
         
         
@@ -40,12 +38,12 @@ public struct ButtonComponent: View {
                 icon
                     .resizable()
                     .renderingMode(.template)
-                    .foregroundColor(isEnabled ? themeProperties.foreground : Color.gray)
+                    .foregroundColor(isEnabled ? themeProperties.foreground : Color.theme.buttonForegroundDisabledState)
                     .frame(width: sizeAttributes.fontSize, height: sizeAttributes.fontSize)
             }
             
             Text("\(label)")
-                .foregroundColor(isEnabled ? themeProperties.foreground : Color.gray)
+                .foregroundColor(isEnabled ? themeProperties.foreground : Color.theme.buttonForegroundDisabledState)
                 .font(.system(size: sizeAttributes.fontSize))
         }
         
@@ -57,7 +55,7 @@ public struct ButtonComponent: View {
         
     }
     
-    public func getSizeAttributes(by size: ButtonSize) ->
+    func getSizeAttributes(by size: ButtonSize) ->
     (width: CGFloat, height: CGFloat, alignment: Alignment, fontSize: CGFloat, radius: CGFloat, strokeWidth: CGFloat){
         switch size {
             // we can use the font size for the icon size because they are same
@@ -74,32 +72,31 @@ public struct ButtonComponent: View {
         case .XS:
             return(94, 27, .center, 16, 8, 1)
         }
+        
+//        public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color? = Color.theme.defaultColor, icon: Image?, action: @escaping () -> Void) {
+//            self.label = label
+//            self.size = size
+//            self.theme = theme
+//            self.color = color
+//            self.icon = icon
+//            self.action = action
+//        }
     }
     
-    // TODO -- refactor because we find out that icon can be dynamic by passing svg icon, and the color states are changeable
-    public func getThemeProperties(by theme: ButtonTheme) ->
-    (fill: Color, pressedColor: Color, foreground: Color, stroke: Color, icon: String, disabledFill: Color, disabledStroke: Color) {
+    // DONE -- refactor because we find out that icon can be dynamic by passing svg icon, and the color states are changeable
+    func getThemeProperties(by theme: ButtonTheme) ->
+    (fill: Color, pressedColor: Color, foreground: Color, stroke: Color, disabledFill: Color, disabledStroke: Color) {
         
-        let mainColor = color ?? Color.accentColor
+        let mainColor = color ?? Color.theme.defaultColor
         
         switch theme {
         case .PRIMARY:
-            return (mainColor, mainColor.opacity(0.9), Color.white, Color.clear, "IconPrimaryButton", Color.gray, Color.clear)
+            return (mainColor, mainColor.opacity(0.9), Color.white, Color.clear, Color.theme.buttonFillDisabledState, Color.clear)
         case .SECONDARY:
-            return (Color.clear, mainColor.opacity(0.9), mainColor, mainColor, "IconSecondaryButton", Color.clear, Color.gray)
+            return (Color.clear, mainColor.opacity(0.9), mainColor, mainColor, Color.clear, Color.theme.buttonFillDisabledState)
         case .TERTIARY:
-            return (Color.clear, mainColor.opacity(0.9), mainColor, Color.clear, "IconSecondaryButton", Color.clear, Color.clear)
+            return (Color.clear, mainColor.opacity(0.9), mainColor, Color.clear, Color.clear, Color.clear)
         }
-    }
-    
-    
-    public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color?, icon: Image?, action: @escaping () -> Void) {
-        self.label = label
-        self.size = size
-        self.theme = theme
-        self.color = color
-        self.icon = icon
-        self.action = action
     }
 }
 
@@ -107,23 +104,22 @@ public struct ButtonComponent: View {
 @available(iOS 13.0.0, *)
 @available(macOS 11, *)
 struct ButtonComponent_Previews: PreviewProvider {
-
     static var previews: some View {
-        ButtonComponent(label: "Button", size: .L, theme: .PRIMARY, color:
-                            Color("defaultColor", bundle: .module), icon: nil, action: {})
+        ButtonComponent(label: "Button", size: .L, theme: .PRIMARY, color: .accentColor, icon: nil, action: {})
             .previewLayout(.sizeThatFits)
             .padding()
+            .disabled(true)
     }
 }
 
 
-public enum ButtonTheme {
+enum ButtonTheme {
     case PRIMARY
     case SECONDARY
     case TERTIARY
 }
 
-public enum ButtonSize {
+enum ButtonSize {
     case XXL
     case XL
     case L
@@ -141,8 +137,8 @@ struct ReusableLibraryContent: LibraryContentProvider {
             label: "",
             size: .L,
             theme: .PRIMARY,
-            color: Color.accentColor,
-            icon: Image("IconPrimaryButton"),
+            color: Color.theme.defaultColor,
+            icon: nil,
             action: {}),
                     title: "ButtonComponent",
                     category: .control)
