@@ -5,7 +5,7 @@
 //  Created by nexsoft nexsoft on 13/06/22.
 //
 
-
+import Foundation
 import SwiftUI
 
 
@@ -107,11 +107,12 @@ public struct ButtonComponent: View {
 @available(iOS 13.0.0, *)
 @available(macOS 11, *)
 struct ButtonComponent_Previews: PreviewProvider {
+
     static var previews: some View {
-        ButtonComponent(label: "Button", size: .L, theme: .PRIMARY, color: .accentColor, icon: nil, action: {})
+        ButtonComponent(label: "Button", size: .L, theme: .PRIMARY, color:
+                            Color("defaultColor", bundle: .module), icon: nil, action: {})
             .previewLayout(.sizeThatFits)
             .padding()
-            .disabled(true)
     }
 }
 
