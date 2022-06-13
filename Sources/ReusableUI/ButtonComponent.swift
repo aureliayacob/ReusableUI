@@ -91,6 +91,16 @@ public struct ButtonComponent: View {
             return (Color.clear, mainColor.opacity(0.9), mainColor, Color.clear, "IconSecondaryButton", Color.clear, Color.clear)
         }
     }
+    
+    
+    public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color?, icon: Image?, action: @escaping () -> Void) {
+        self.label = label
+        self.size = size
+        self.theme = theme
+        self.color = color
+        self.icon = icon
+        self.action = action
+    }
 }
 
 
