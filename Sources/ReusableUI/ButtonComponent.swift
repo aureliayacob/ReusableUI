@@ -73,14 +73,7 @@ public struct ButtonComponent: View {
             return(94, 27, .center, 16, 8, 1)
         }
         
-//        public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color? = Color.theme.defaultColor, icon: Image?, action: @escaping () -> Void) {
-//            self.label = label
-//            self.size = size
-//            self.theme = theme
-//            self.color = color
-//            self.icon = icon
-//            self.action = action
-//        }
+        
     }
     
     // DONE -- refactor because we find out that icon can be dynamic by passing svg icon, and the color states are changeable
@@ -97,6 +90,15 @@ public struct ButtonComponent: View {
         case .TERTIARY:
             return (Color.clear, mainColor.opacity(0.9), mainColor, Color.clear, Color.clear, Color.clear)
         }
+    }
+    
+    init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color? = Color.theme.defaultColor, icon: Image?, action: @escaping () -> Void) {
+        self.label = label
+        self.size = size
+        self.theme = theme
+        self.color = color
+        self.icon = icon
+        self.action = action
     }
 }
 
