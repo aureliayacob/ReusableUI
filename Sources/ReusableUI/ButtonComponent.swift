@@ -92,7 +92,7 @@ public struct ButtonComponent: View {
         }
     }
     
-    public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color?, icon: Image?, action: @escaping () -> Void) {
+    public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color? = Color.theme.defaultColor, icon: Image?, action: @escaping () -> Void) {
         self.label = label
         self.size = size
         self.theme = theme
