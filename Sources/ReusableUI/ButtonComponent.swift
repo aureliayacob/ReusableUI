@@ -16,7 +16,7 @@ public struct ButtonComponent: View {
     let theme: ButtonTheme
     let color: Color?
     let icon: Image?
-    
+    let foregroundColor: Color?
     let action: () -> Void
     
     @Environment(\.isEnabled) var isEnabled
@@ -29,7 +29,7 @@ public struct ButtonComponent: View {
         let background = RoundedRectangle(cornerRadius: sizeAttributes.radius)
             .stroke(isEnabled ? themeProperties.stroke : themeProperties.disabledStroke,
                     lineWidth: sizeAttributes.strokeWidth)
-            .background(isEnabled ? themeProperties.fill : themeProperties.disabledFill)
+            .background(isEnabled ? themeProperties.background : themeProperties.disabledFill)
         
         
         
@@ -75,30 +75,32 @@ public struct ButtonComponent: View {
         
         
     }
-    
+    // TODO -- jagain foreground color
     // DONE -- refactor because we find out that icon can be dynamic by passing svg icon, and the color states are changeable
     func getThemeProperties(by theme: ButtonTheme) ->
-    (fill: Color, pressedColor: Color, foreground: Color, stroke: Color, disabledFill: Color, disabledStroke: Color) {
+    (background: Color, pressedColor: Color, foreground: Color, stroke: Color, disabledFill: Color, disabledStroke: Color) {
         
-        let mainColor = color ?? Color.theme.defaultColor
+        let mainColor = color ?? Color.accentColor
+        let mainForeground = foregroundColor ?? Color.white
         
         switch theme {
         case .PRIMARY:
-            return (mainColor, mainColor.opacity(0.9), Color.white, Color.clear, Color.theme.buttonFillDisabledState, Color.clear)
+            return (mainColor, mainColor.opacity(0.9), mainForeground, Color.clear, Color.theme.buttonFillDisabledState, Color.clear)
         case .SECONDARY:
-            return (Color.clear, mainColor.opacity(0.9), mainColor, mainColor, Color.clear, Color.theme.buttonFillDisabledState)
+            return (Color.clear, mainColor.opacity(0.9), mainForeground, mainColor, Color.clear, Color.theme.buttonFillDisabledState)
         case .TERTIARY:
-            return (Color.clear, mainColor.opacity(0.9), mainColor, Color.clear, Color.clear, Color.clear)
+            return (Color.clear, mainColor.opacity(0.9), mainForeground, Color.clear, Color.clear, Color.clear)
         }
     }
     
-    public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color? = Color.primary, icon: Image? = nil, action: @escaping () -> Void) {
+    public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color, icon: Image? = nil, foregroundColor: Color? = Color.white, action: @escaping () -> Void) {
         self.label = label
         self.size = size
         self.theme = theme
         self.color = color
         self.icon = icon
         self.action = action
+        self.foregroundColor = foregroundColor
     }
 }
 
@@ -107,10 +109,7 @@ public struct ButtonComponent: View {
 @available(macOS 11, *)
 struct ButtonComponent_Previews: PreviewProvider {
     static var previews: some View {
-//        ButtonComponent(label: "aaaaa", size: .L, theme: .PRIMARY, color: Color.theme.defaultColor, icon: nil, action: {})
-//            .previewLayout(.sizeThatFits)
-//            .padding()
-        ButtonComponent(label: "aurel", size: .L, theme: .PRIMARY, action: {})
+        ButtonComponent(label: "aurel", size: .L, theme: .TERTIARY, color: Color.pink, icon: Image(systemName: "heart.fill"), foregroundColor: .yellow, action: {})
     }
 }
 
