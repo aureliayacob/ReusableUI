@@ -20,6 +20,7 @@ public struct ButtonComponent: View {
     let action: () -> Void
     //to custom the width
     var width: CGFloat?
+    var maxWidth: CGFloat?
     
     @Environment(\.isEnabled) var isEnabled
     
@@ -62,7 +63,7 @@ public struct ButtonComponent: View {
         case .XL:
             return(32, 24, 24, 16, 2)
         case .L:
-            return(24, 16, 22, 16, 1)
+            return(24, 16, 22, 16, 2)
         case .M:
             return(20, 12, 20, 12, 2)
         case .S:
@@ -88,7 +89,7 @@ public struct ButtonComponent: View {
         }
     }
     
-    public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color, action: @escaping () -> Void, icon: Image? = nil, foregroundColor: Color? = Color.white, width: CGFloat? = nil) {
+    public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color, action: @escaping () -> Void, icon: Image? = nil, foregroundColor: Color? = Color.white, width: CGFloat? = nil, maxWidth: CGFloat? = nil) {
         self.label = label
         self.size = size
         self.theme = theme
@@ -97,6 +98,7 @@ public struct ButtonComponent: View {
         self.action = action
         self.foregroundColor = foregroundColor
         self.width = width
+        self.maxWidth = maxWidth
     }
 }
 
@@ -125,8 +127,7 @@ struct ReusableLibraryContent: LibraryContentProvider {
             size: .L,
             theme: .PRIMARY,
             color: Color.theme.defaultColor,
-            icon: nil,
-            action: {}),
+            action: {}, icon: nil),
                     title: "ButtonComponent",
                     category: .control)
     }
