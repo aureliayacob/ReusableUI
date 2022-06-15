@@ -50,6 +50,7 @@ public struct ButtonComponent: View {
         .padding(.horizontal, sizeAttributes.paddingHorizontal)
         .padding(.vertical, sizeAttributes.paddingVertical)
         .frame(width: width ?? nil)
+        .frame(maxWidth: maxWidth ?? nil)
         .background(background)
         .cornerRadius(sizeAttributes.radius)
     }
