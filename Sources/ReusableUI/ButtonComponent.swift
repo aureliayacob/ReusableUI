@@ -44,30 +44,28 @@ public struct ButtonComponent: View {
                 .foregroundColor(isEnabled ? themeProperties.foreground : Color.theme.buttonForegroundDisabledState)
                 .font(.system(size: sizeAttributes.fontSize))
         }
-        
-        .frame(width: sizeAttributes.width,
-               height: sizeAttributes.height,
-               alignment: sizeAttributes.alignment)
+        .padding(.horizontal, sizeAttributes.paddingHorizontal)
+        .padding(.vertical, sizeAttributes.paddingVertical)
         .background(background)
         .cornerRadius(sizeAttributes.radius)
     }
     
     func getSizeAttributes(by size: ButtonSize) ->
-    (width: CGFloat, height: CGFloat, alignment: Alignment, fontSize: CGFloat, radius: CGFloat, strokeWidth: CGFloat){
+    (paddingHorizontal: CGFloat, paddingVertical: CGFloat, fontSize: CGFloat, radius: CGFloat, strokeWidth: CGFloat){
         switch size {
             // we can use the font size for the icon size because they are same
         case .XXL:
-            return(214, 97, .center, 28, 24, 2)
+            return(32, 32,  28, 24, 2)
         case .XL:
-            return(181, 78, .center, 24, 16, 2)
+            return(32, 24, 24, 16, 2)
         case .L:
-            return(139, 58, .center, 22, 16, 1)
+            return(24, 16, 22, 16, 1)
         case .M:
-            return(127, 49, .center, 20, 12, 2)
+            return(20, 12, 20, 12, 2)
         case .S:
-            return(109, 38, .center, 18, 8, 1)
+            return(16, 8,  18, 8, 1)
         case .XS:
-            return(94, 27, .center, 16, 8, 1)
+            return(8, 4, 16, 8, 1)
         }
     }
     
