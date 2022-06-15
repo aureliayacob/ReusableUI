@@ -81,7 +81,7 @@ public struct ButtonComponent: View {
         case .SECONDARY:
             return (Color.clear, color.opacity(0.9), color, color, Color.clear, Color.theme.buttonFillDisabledState)
         case .TERTIARY:
-            return (Color.clear, color.opacity(0.9), mainForeground, Color.clear, Color.clear, Color.clear)
+            return (Color.clear, color.opacity(0.9), color, Color.clear, Color.clear, Color.clear)
         }
     }
     
