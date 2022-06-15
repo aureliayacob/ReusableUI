@@ -18,6 +18,8 @@ public struct ButtonComponent: View {
     let icon: Image?
     let foregroundColor: Color?
     let action: () -> Void
+    //to custom the width
+    var width: CGFloat?
     
     @Environment(\.isEnabled) var isEnabled
     
@@ -46,6 +48,7 @@ public struct ButtonComponent: View {
         }
         .padding(.horizontal, sizeAttributes.paddingHorizontal)
         .padding(.vertical, sizeAttributes.paddingVertical)
+        .frame(width: width ?? nil)
         .background(background)
         .cornerRadius(sizeAttributes.radius)
     }
@@ -85,7 +88,7 @@ public struct ButtonComponent: View {
         }
     }
     
-    public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color, icon: Image? = nil, foregroundColor: Color? = Color.white, action: @escaping () -> Void) {
+    public init(label: String, size: ButtonSize, theme: ButtonTheme, color: Color, action: @escaping () -> Void, icon: Image? = nil, foregroundColor: Color? = Color.white, width: CGFloat? = nil) {
         self.label = label
         self.size = size
         self.theme = theme
@@ -93,6 +96,7 @@ public struct ButtonComponent: View {
         self.icon = icon
         self.action = action
         self.foregroundColor = foregroundColor
+        self.width = width
     }
 }
 
